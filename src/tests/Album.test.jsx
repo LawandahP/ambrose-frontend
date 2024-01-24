@@ -1,9 +1,9 @@
 import { test, vi, expect } from 'vitest'
 import { render, waitFor, screen } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios'
 import AlbumPage from '../pages/Album'
-import { UserContext } from '../hooks/useAuth' // import your UserContext
+import { UserContext } from '../hooks/useAuth';
 
 test('AlbumPage renders photos correctly', async () => {
   // Mock the axios.get function to return sample data

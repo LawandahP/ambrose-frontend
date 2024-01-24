@@ -56,11 +56,7 @@ const UserPage = () => {
             }}
           >
             {albums.map((album, index) => (
-              <>
-                <Link 
-                  key={album?.id}
-                  to={`/album/${album.id}`}
-                  style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div key={album?.id}>
                   <ListItemButton>
                     <ListItemIcon>
                       {index + 1}
@@ -74,9 +70,8 @@ const UserPage = () => {
                        />
                      </Link>
                   </ListItemButton>
-                </Link>
                 <Divider />
-              </>
+              </div>
               
             ))}
         </List>
