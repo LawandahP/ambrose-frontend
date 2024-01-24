@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import Photo from '../components/Photo';
@@ -23,24 +21,25 @@ const PhotoDetails = () => {
   const [ loadingUpdate, setLoadingUpdate ] = useState(false)
 
 
-  const fetchAlbumPhotos = async () => {
-    setLoading(true);
-    try {
-      const photoResponse = await axios.get(`https://jsonplaceholder.typicode.com/photos/${id}`);
-      setPhoto(photoResponse.data);
-      setTitle(photoResponse.data.title)
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-      console.error('Error fetching photo:', err);
-    }
-    
-  };
+  
 
   useEffect(() => {
     setLoading(true);
+    const fetchAlbumPhotos = async () => {
+      setLoading(true);
+      try {
+        const photoResponse = await axios.get(`https://jsonplaceholder.typicode.com/photos/${id}`);
+        setPhoto(photoResponse.data);
+        setTitle(photoResponse.data.title)
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        console.error('Error fetching photo:', err);
+      }
+      
+    };
     fetchAlbumPhotos()
-  }, []);
+  }, [id]);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
