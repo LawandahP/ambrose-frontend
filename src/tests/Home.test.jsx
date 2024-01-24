@@ -2,7 +2,7 @@ import { test, vi, expect } from 'vitest'
 import { render, waitFor, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import axios from 'axios'
-import HomePage from './Home'
+import HomePage from '../pages/Home'
 import { UserContext } from '../hooks/useAuth' // import your UserContext
 
 test('HomePage renders user and album data correctly', async () => {

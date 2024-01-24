@@ -2,7 +2,7 @@ import { test, expect, vi } from 'vitest'
 import { render, waitFor, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import axios from 'axios'
-import UserPage from './User'
+import UserPage from '../pages/User'
 import { UserContext } from '../hooks/useAuth';
 
 test('UserPage renders user data correctly', async () => {

@@ -2,7 +2,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 // import '@testing-library/jest-dom';
-import LandingPage from './LandingPage';
+import LandingPage from '../pages/LandingPage';
 import { UserContext } from '../hooks/useAuth';
 
 // Mock the UserContext to simulate user authentication states
