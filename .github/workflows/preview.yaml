@@ -38,7 +38,7 @@ jobs:
 
         
   Deploy-Preview:
-    # Only deploy if tests have passed
+    # Only deploy if tests and lints have passed
     needs: [Test, lint]
 
     runs-on: ubuntu-latest
