@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
-// src/App.js
 import React from 'react';
-import Routing from './router';
 import Header from './components/Header';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Outlet } from "react-router-dom";
 
 import { UserAuth } from './hooks/useAuth';
 
@@ -33,6 +31,8 @@ const App = () => {
 
   return (
     <UserAuth>
+      
+      {/* ToastContainer for displaying notifications */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -45,8 +45,14 @@ const App = () => {
         pauseOnHover
       />
 
+      {/* Header component with handleOpen function as prop */}
       <Header handleOpen={handleOpen}/>
-      <Routing />
+
+      {/* Routing component for handling routes */}
+      {/* <Routing /> */}
+      <Outlet />
+
+      {/* Modal component for login */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -54,6 +60,7 @@ const App = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          {/* Login component inside modal */}
           <Login />
         </Box>
         </Modal>

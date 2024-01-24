@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useContext } from 'react';
 import { UserContext } from '../hooks/useAuth';
 import { useSearchParams, useNavigate } from 'react-router-dom';

@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import Photo from '../components/Photo';
@@ -22,6 +20,8 @@ const PhotoDetails = () => {
   const [loading, setLoading] = useState(false);
   const [ loadingUpdate, setLoadingUpdate ] = useState(false)
 
+
+  
 
   useEffect(() => {
     setLoading(true);

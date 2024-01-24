@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-// src/context/UserContext.jsx
 import { createContext, useState } from 'react';
 import { exchangeCodeForAccessToken, fetchUserDetails } from '../services/authService';
 

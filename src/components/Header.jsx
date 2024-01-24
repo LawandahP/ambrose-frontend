@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-// /* eslint-disable react/prop-types */
-// /* eslint-disable no-unused-vars */
 import { FaCameraRetro } from 'react-icons/fa';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -15,8 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { UserContext } from '../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
-
+// Define the pages for navigation
 const pages = [
   {
     name: "Home",
@@ -24,30 +22,30 @@ const pages = [
   },
 ]
 
-
+// Header component
 function Header({handleOpen}) {
+  // Get user details and logout function from context
   const { userDetails, logout } = React.useContext(UserContext);
 
+  // State for navigation and user menus
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  // Handlers for opening and closing menus
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-  // const navigate = useNavigate();
-
+  // Render the header
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
@@ -70,6 +68,7 @@ function Header({handleOpen}) {
             AMBROSE ALBUM
           </Typography>
 
+          {/* Navigation menu for small screens */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', lg: 'none' } }}>
             <IconButton
               size="large"
@@ -82,6 +81,7 @@ function Header({handleOpen}) {
               <FaCameraRetro />
             </IconButton>
 
+            {/* Render navigation menu if user details are present */}
             { userDetails &&
               <Menu
                 id="menu-appbar"
@@ -104,9 +104,9 @@ function Header({handleOpen}) {
                 {pages.map((page) => (
                   <MenuItem key={page?.name} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
-                      <a href={page?.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <Link to={page?.path} style={{ textDecoration: 'none', color: 'inherit' }}>
                         {page?.name}
-                      </a>
+                      </Link>
                     </Typography>
                   </MenuItem>
                 ))}
@@ -114,6 +114,7 @@ function Header({handleOpen}) {
             }
           </Box>
         
+          {/* Navigation menu for larger screens */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {userDetails?.name &&
               pages.map((page) => (
@@ -121,13 +122,14 @@ function Header({handleOpen}) {
                   key={page?.name}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  <a href={page?.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Link to={page?.path} style={{ textDecoration: 'none', color: 'inherit' }}>
                     {page?.name}
-                  </a>
+                  </Link>
                 </Button>
               ))}
           </Box>
           
+          {/* User menu */}
           {userDetails?.name ?
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
@@ -151,6 +153,7 @@ function Header({handleOpen}) {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
+                {/* Display user details and logout option */}
                 <MenuItem>
                   <Typography textAlign="center">{userDetails?.login}</Typography>
                 </MenuItem>
@@ -162,7 +165,9 @@ function Header({handleOpen}) {
             
               </Menu>
             </Box>
-            : <Box>
+            : 
+            // Display login button if user is not logged in
+            <Box>
               <Button 
                 onClick={handleOpen}
                 color="inherit">
