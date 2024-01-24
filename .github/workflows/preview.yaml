@@ -8,6 +8,21 @@ on:
       - main
 jobs:
 
+  lint:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v3
+            with:
+              submodules: recursive
+          - uses: actions/setup-node@v3
+            with:
+              node-version: 18
+              registry-url: https://registry.npmjs.org/
+          - name: npm install, lint
+            run: |
+              npm install
+              npm run lint
   Test:
     runs-on: ubuntu-latest
     steps:
@@ -17,12 +32,14 @@ jobs:
           with:
             node-version: 18
 
-        - run: npm run test
-        - run: npm run lint
+        - run: 
+            npm install
+            npm run test
+
         
   Deploy-Preview:
     # Only deploy if tests have passed
-    needs: [Test]
+    needs: [Test, lint]
 
     runs-on: ubuntu-latest
     steps:
