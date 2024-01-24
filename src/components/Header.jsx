@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { UserContext } from '../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 // Define the pages for navigation
 const pages = [
@@ -106,9 +107,9 @@ function Header({handleOpen}) {
                 {pages.map((page) => (
                   <MenuItem key={page?.name} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
-                      <a href={page?.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <Link to={page?.path} style={{ textDecoration: 'none', color: 'inherit' }}>
                         {page?.name}
-                      </a>
+                      </Link>
                     </Typography>
                   </MenuItem>
                 ))}
@@ -124,9 +125,9 @@ function Header({handleOpen}) {
                   key={page?.name}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  <a href={page?.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Link to={page?.path} style={{ textDecoration: 'none', color: 'inherit' }}>
                     {page?.name}
-                  </a>
+                  </Link>
                 </Button>
               ))}
           </Box>

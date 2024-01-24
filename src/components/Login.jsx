@@ -1,10 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { googleConfig, facebookConfig, githubConfig } from '../services/oauthConfig';
+import { githubConfig } from '../services/oauthConfig';
 import LoginButton from './LoginButton';
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook, FaGithub } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 
 // Function to handle login button click
 export const handleLogin = (providerConfig) => {

@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Layout from '../components/Layout';
 import { RequireAuthentication } from '../services/authProtection';
 import axios from 'axios'
@@ -18,7 +18,6 @@ const UserPage = () => {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [albums, setAlbums] = useState([]);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
 
@@ -58,14 +57,27 @@ const UserPage = () => {
           >
             {albums.map((album, index) => (
               <>
-              <ListItemButton key={album.id} onClick={() => navigate(`/album/${album.id}`)}>
-                <ListItemIcon>
-                  {index + 1}
-                </ListItemIcon>
-                <ListItemText id={`list-item-${album?.id}`} primary={album?.title} />
-              </ListItemButton>
-              <Divider />
+                <Link 
+                  key={album?.id}
+                  to={`/album/${album.id}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      {index + 1}
+                    </ListItemIcon>
+
+                    <Link to={`/album/${album.id}`}
+                       style={{ textDecoration: 'none', color: 'inherit'}}>
+                      <ListItemText 
+                        id={`list-item-${album?.id}`}
+                        primary={album?.title}
+                       />
+                     </Link>
+                  </ListItemButton>
+                </Link>
+                <Divider />
               </>
+              
             ))}
         </List>
       </>   

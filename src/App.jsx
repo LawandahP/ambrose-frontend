@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
-// src/App.js
 import React from 'react';
-import Routing from './router';
 import Header from './components/Header';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Outlet } from "react-router-dom";
 
 import { UserAuth } from './hooks/useAuth';
 
@@ -33,6 +32,7 @@ const App = () => {
 
   return (
     <UserAuth>
+      
       {/* ToastContainer for displaying notifications */}
       <ToastContainer
         position="top-right"
@@ -50,7 +50,8 @@ const App = () => {
       <Header handleOpen={handleOpen}/>
 
       {/* Routing component for handling routes */}
-      <Routing />
+      {/* <Routing /> */}
+      <Outlet />
 
       {/* Modal component for login */}
       <Modal
