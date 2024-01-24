@@ -33,6 +33,7 @@ const App = () => {
 
   return (
     <UserAuth>
+      {/* ToastContainer for displaying notifications */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -45,8 +46,13 @@ const App = () => {
         pauseOnHover
       />
 
+      {/* Header component with handleOpen function as prop */}
       <Header handleOpen={handleOpen}/>
+
+      {/* Routing component for handling routes */}
       <Routing />
+
+      {/* Modal component for login */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -54,6 +60,7 @@ const App = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          {/* Login component inside modal */}
           <Login />
         </Box>
         </Modal>
