@@ -1,5 +1,4 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable no-unused-vars */
+
 import React from 'react';
 import { githubConfig } from '../services/oauthConfig';
 import LoginButton from './LoginButton';

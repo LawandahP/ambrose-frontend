@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import { FaAngleRight } from "react-icons/fa6";

@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-// /* eslint-disable react/prop-types */
-// /* eslint-disable no-unused-vars */
 import { FaCameraRetro } from 'react-icons/fa';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';

@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import { RequireAuthentication } from '../services/authProtection';
