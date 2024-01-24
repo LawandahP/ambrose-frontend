@@ -21,6 +21,7 @@ const PhotoCard = ({imgUrl, title, onClick}) => {
           pt: "56.25%",
         }}
         image={imgUrl}
+        alt={title}
       />
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography>
