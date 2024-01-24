@@ -16,5 +16,23 @@ test('HomePage renders user and album data correctly', async () => {
     }
   })
 
- 
+  // Mock user context
+  const mockUserDetails = { name: 'Test User' }
+
+  // Render the HomePage component
+  render(
+    <UserContext.Provider value={{ userDetails: mockUserDetails }}>
+      <MemoryRouter initialEntries={['/']}>
+        <HomePage />
+      </MemoryRouter>
+    </UserContext.Provider>
+  )
+
+  // Wait for the async actions to complete
+  await waitFor(() => screen.getByText('Welcome, Test User'))
+
+  // Check that the user data is displayed correctly
+  expect(screen.getByText('Welcome, Test User')).toBeInTheDocument()
+  expect(screen.getByText('Test User')).toBeInTheDocument()
+  expect(screen.getByText('1')).toBeInTheDocument() // album count
 })
