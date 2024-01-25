@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import { exchangeCodeForAccessToken, fetchUserDetails } from '../services/authService';
+import { logError } from '../services/errorLoggingService';
 
 export const UserContext = createContext(null);
 
@@ -16,7 +17,8 @@ export const UserAuth = ({ children }) => {
       localStorage.setItem('userDetails', JSON.stringify(userDetails));
       setUserDetails(userDetails);
     } catch (error) {
-      console.error('Authentication failed:', error);
+      logError(error, 'Authentication failed');
+      throw error;
     }
   };
 
@@ -25,7 +27,7 @@ export const UserAuth = ({ children }) => {
       const accessToken = await exchangeCodeForAccessToken(code);
       return accessToken;
     } catch (error) {
-      console.error('GitHub code exchange failed:', error);
+      logError(error, 'Github code exchange for access token failed');
       throw error;
     }
   };
