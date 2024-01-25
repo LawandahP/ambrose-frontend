@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
+import { logError } from '../services/errorLoggingService';
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
@@ -38,9 +39,10 @@ const HomePage = () => {
         const albumsResponse = await axios.get(`https://jsonplaceholder.typicode.com/albums`);
         setAlbums(albumsResponse.data);
         setLoading(false);
-      } catch (err) {
+      } catch (error) {
         setLoading(false);
-        console.error('Error fetching data:', err);
+        logError(error, 'Error fetching users & albums');
+        throw error;
       }
     };
 

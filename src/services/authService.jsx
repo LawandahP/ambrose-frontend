@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { logError } from './errorLoggingService';
 
 // Function to fetch user details from the OAuth provider
 export const fetchUserDetails = async (provider, accessToken) => {
@@ -44,9 +45,11 @@ export const exchangeCodeForAccessToken = async (code) => {
     return response.data.access_token;
   } catch (error) {
     if (error.response && error.response.data && error.response.data.detail) {
-      throw new Error(error.response.data.detail);
+      logError(error.response.data.detail);
+      throw error;
     } else {
-      throw new Error('Failed to exchange code for access token');
+      logError(error, 'Failed to exchange code for access token');
+      throw error
     }
   }
 };
