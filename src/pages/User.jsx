@@ -10,6 +10,7 @@ import Layout from '../components/Layout';
 import { RequireAuthentication } from '../services/authProtection';
 import axios from 'axios'
 import Spinner from '../components/Spinner';
+import { logError } from '../services/errorLoggingService';
 
 const UserPage = () => {
   const { id } = useParams();
@@ -27,9 +28,10 @@ const UserPage = () => {
         const albumsResponse = await axios.get(`https://jsonplaceholder.typicode.com/albums?userId=${id}`);
         setAlbums(albumsResponse.data);
         setLoading(false);
-      } catch (err) {
+      } catch (error) {
         setLoading(false);
-        console.error('Error fetching data:', err);
+        logError(error, 'Error user and users albums');
+        throw error;
       }
       
     };

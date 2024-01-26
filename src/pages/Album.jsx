@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import Layout from '../components/Layout';
 import axios from 'axios'
 import Spinner from '../components/Spinner';
+import { logError } from '../services/errorLoggingService';
 
 
 const AlbumPage = () => {
@@ -31,9 +32,10 @@ const AlbumPage = () => {
         const albumsResponse = await axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`);
         setPhotos(albumsResponse.data);
         setLoading(false);
-      } catch (err) {
+      } catch (error) {
         setLoading(false);
-        console.error('Error fetching data:', err);
+        logError(error, 'Error fetching album and photos');
+        throw error;
       }
       
     };

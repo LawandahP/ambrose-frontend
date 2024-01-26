@@ -11,6 +11,7 @@ import Layout from '../components/Layout';
 import { RequireAuthentication} from '../services/authProtection';
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { logError } from '../services/errorLoggingService';
 
 
 const PhotoDetails = () => {
@@ -32,9 +33,10 @@ const PhotoDetails = () => {
         setPhoto(photoResponse.data);
         setTitle(photoResponse.data.title)
         setLoading(false);
-      } catch (err) {
+      } catch (error) {
         setLoading(false);
-        console.error('Error fetching photo:', err);
+        logError(error, 'Error fetching photo');
+        throw error;
       }
       
     };
@@ -56,7 +58,8 @@ const PhotoDetails = () => {
       setLoadingUpdate(false);
     } catch (error) {
       setLoadingUpdate(false);
-      console.error('Error updating photo title:', error);
+      logError(error, 'Error updating photo title');
+      throw error;
     }
   };
 
