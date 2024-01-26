@@ -6,8 +6,8 @@ on:
   push:
     branches-ignore:
       - production
+      
 jobs:
-
   lint:
         runs-on: ubuntu-latest
         steps:
