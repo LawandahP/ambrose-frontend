@@ -36,7 +36,6 @@ jobs:
             npm install
             npm run test
 
-        
   Deploy-Preview:
     # Only deploy if tests and lints have passed
     needs: [Test, lint]
