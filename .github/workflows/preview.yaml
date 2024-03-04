@@ -6,8 +6,8 @@ on:
   push:
     branches-ignore:
       - production
+      
 jobs:
-
   lint:
         runs-on: ubuntu-latest
         steps:
@@ -36,7 +36,6 @@ jobs:
             npm install
             npm run test
 
-        
   Deploy-Preview:
     # Only deploy if tests and lints have passed
     needs: [Test, lint]

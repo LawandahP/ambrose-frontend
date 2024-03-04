@@ -60,7 +60,7 @@ const HomePage = () => {
         <Spinner />
       ) : (
         <>
-          <h2>Welcome, {userDetails?.name}</h2>
+          <h2>Welcome, {userDetails?.name || userDetails?.user?.first_name}</h2>
           <TableContainer component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
