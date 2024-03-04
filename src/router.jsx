@@ -36,7 +36,23 @@ const Router = createBrowserRouter([{
     {
       path: '/auth/github',
       element: <AuthRedirectHandler provider="github" />,
-    }
+    },
+    {
+      path: '/auth/google',
+      element: <AuthRedirectHandler provider="google" />,
+    },
+    {
+      path: '/auth/facebook',
+      element: <AuthRedirectHandler provider="facebook" />,
+    },
+    {
+      path: '/auth/twitter',
+      element: <AuthRedirectHandler provider="twitter" />,
+    },
+    {
+      path: '/auth/linkedin',
+      element: <AuthRedirectHandler provider="linkedin" />,
+    },
   ]
 }])
 

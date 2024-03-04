@@ -5,12 +5,15 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import { githubConfig } from '../services/oauthConfig';
+import { facebookConfig, githubConfig, googleConfig, linkedinConfig, twitterConfig } from '../services/oauthConfig';
 import LoginButton from '../components/LoginButton';
-import { FaGithub } from 'react-icons/fa';
+import { FaFacebook, FaGithub, FaTwitter } from 'react-icons/fa';
 import { handleLogin } from '../components/Login';
 import { UserContext } from '../hooks/useAuth';
-
+import { FcGoogle } from 'react-icons/fc';
+import AgreementButton from '../components/check';
+import axios from 'axios'; 
+import { FaLinkedin } from 'react-icons/fa6';
 
 function Copyright() {
   return (
@@ -27,7 +30,31 @@ function Copyright() {
 
 
 export default function LandingPage() {
-  const { userDetails } = React.useContext(UserContext);
+  const { userDetails, agreementStatus } = React.useContext(UserContext);
+
+  // const handleLinkedInLogin = async () => {  
+  //   try {
+  //     const response = await axios.post(import.meta.env.VITE_LINKEDIN_OAUTH, {
+  //       headers: {
+  //         'Content-Type': 'application/x-www-form-urlencoded'
+  //       }
+  //     },
+  //     {
+  //         "grant_type": "client_credentials",
+  //         "client_id": import.meta.env.VITE_LINKEDIN_CLIENT_ID,
+  //         "client_secret": import.meta.env.VITE_LINKEDIN_CLIENT_SECRET
+  //     }
+  //     );
+  
+  //     if (response?.data?.access_token) {
+  //       // Redirect with access_token in query params
+  //       window.location.href = `http://localhost:5173/auth/linkedin?access_token=${response?.data?.access_token}`;
+  //     }
+  //   } catch (error) {
+  //     console.error('LinkedIn login error:', error);
+  //   }
+  // };
+  
 
   return (
       <>
@@ -64,11 +91,45 @@ export default function LandingPage() {
                   justifyContent="center"
                 >
                   {!userDetails && 
-                    <LoginButton 
-                      text={'Login with Github'}
-                      icon={<FaGithub size={24} />}
-                      onClick={() => handleLogin(githubConfig)
-                    }/> 
+                  <div>
+                      <div style={{display: "flex", gap: "10px"}}>
+                        {/* <LoginButton 
+                          text={'Login with Github'}
+                          icon={<FaGithub size={24} />}
+                          onClick={() => handleLogin(githubConfig)
+                        }/>  */}
+
+                        <LoginButton 
+                          disabled={!agreementStatus}
+                          text={'Login with Google'}
+                          icon={<FcGoogle size={24} />}
+                          onClick={() => handleLogin(googleConfig)}
+                        /> 
+
+                        <LoginButton 
+                          disabled={!agreementStatus}
+                          text={'Login with Facebook'}
+                          icon={<FaFacebook size={24} />}
+                          onClick={() => handleLogin(facebookConfig)}
+                        /> 
+
+                        <LoginButton 
+                          disabled={!agreementStatus}
+                          text={'Login with Twitter'}
+                          icon={<FaTwitter size={24} />}
+                          onClick={() => handleLogin(twitterConfig, "twitter")}
+                        /> 
+
+                        <LoginButton 
+                          disabled={!agreementStatus}
+                          text={'Login with LinkedIn'}
+                          icon={<FaLinkedin size={24} />}
+                          onClick={() => handleLogin(linkedinConfig, "linkedin")}
+                        /> 
+
+                      </div>
+                      <AgreementButton />
+                  </div>
                   }
                 </Stack>
               </Container>

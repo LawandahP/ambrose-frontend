@@ -45,6 +45,7 @@ function Header({handleOpen}) {
     setAnchorElUser(null);
   };
 
+  const full_name = userDetails?.user?.first_name + userDetails?.user?.last_name
   // Render the header
   return (
     <AppBar position="sticky">
@@ -65,7 +66,7 @@ function Header({handleOpen}) {
               textDecoration: 'none',
             }}
           >
-            AMBROSE ALBUM
+            BOOKING APP
           </Typography>
 
           {/* Navigation menu for small screens */}
@@ -130,11 +131,14 @@ function Header({handleOpen}) {
           </Box>
           
           {/* User menu */}
-          {userDetails?.name ?
+          {userDetails?.name || userDetails?.user?.first_name ?
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={userDetails?.name} src={userDetails?.avatar_url} />
+                  <Avatar 
+                    alt={userDetails?.name || full_name } 
+                    src={userDetails?.avatar_url} 
+                  />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -154,10 +158,19 @@ function Header({handleOpen}) {
                 onClose={handleCloseUserMenu}
               >
                 {/* Display user details and logout option */}
+                {/* userDetails?.user?.first_name */}
                 <MenuItem>
-                  <Typography textAlign="center">{userDetails?.login}</Typography>
+                  <Typography textAlign="center">{userDetails?.user?.first_name}</Typography>
                 </MenuItem>
 
+                <MenuItem>
+                  <Typography textAlign="center">{`Authenticated with ${userDetails?.user?.auth_provider}`}</Typography>
+                </MenuItem>
+                
+                {/* <MenuItem>
+                  <Typography textAlign="center">{userDetails?.login}</Typography>
+                </MenuItem> */}
+                
                 <MenuItem onClick={logout}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
