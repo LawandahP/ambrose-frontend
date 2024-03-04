@@ -120,12 +120,12 @@ export default function LandingPage() {
                           onClick={() => handleLogin(twitterConfig, "twitter")}
                         /> 
 
-                        <LoginButton 
+                        {/* <LoginButton 
                           disabled={!agreementStatus}
                           text={'Login with LinkedIn'}
                           icon={<FaLinkedin size={24} />}
                           onClick={() => handleLogin(linkedinConfig, "linkedin")}
-                        /> 
+                        />  */}
 
                       </div>
                       <AgreementButton />
