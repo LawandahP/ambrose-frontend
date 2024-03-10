@@ -5,40 +5,23 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
 
-const TermsModal = ({ isOpen, onAgree, onClose }) => {
-  const [isChecked, setIsChecked] = React.useState(false);
 
-  const handleAgree = () => {
-    if (isChecked) {
-      onAgree();
-    }
-  };
-
-  const handleCheck = (event) => {
-    setIsChecked(event.target.checked);
-  };
-
+const MyModal = ({ isOpen, onClose, children }) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>Terms and Conditions</DialogTitle>
+      <DialogTitle></DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Please read and agree to the terms and conditions to proceed.
+        Verifying Payment....
         </DialogContentText>
-        <FormControlLabel
-          control={<Checkbox checked={isChecked} onChange={handleCheck} name="agree" />}
-          label="I agree to the terms and conditions."
-        />
+        {children}
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={handleAgree} disabled={!isChecked}>Agree</Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default TermsModal;
+export default MyModal;

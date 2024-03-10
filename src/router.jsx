@@ -7,6 +7,7 @@ import UserPage from './pages/User';
 import PhotoDetails from './pages/Photo';
 import AlbumPage from './pages/Album';
 import App from './App.jsx'
+import PaymentPage from './pages/PaymentPage.jsx';
 
 
 const Router = createBrowserRouter([{
@@ -52,6 +53,10 @@ const Router = createBrowserRouter([{
     {
       path: '/auth/linkedin',
       element: <AuthRedirectHandler provider="linkedin" />,
+    },
+    {
+      path: '/pay',
+      element: <PaymentPage />,
     },
   ]
 }])

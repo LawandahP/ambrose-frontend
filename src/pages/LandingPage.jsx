@@ -12,8 +12,7 @@ import { handleLogin } from '../components/Login';
 import { UserContext } from '../hooks/useAuth';
 import { FcGoogle } from 'react-icons/fc';
 import AgreementButton from '../components/check';
-import axios from 'axios'; 
-import { FaLinkedin } from 'react-icons/fa6';
+
 
 function Copyright() {
   return (

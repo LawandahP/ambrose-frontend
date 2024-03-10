@@ -160,7 +160,7 @@ function Header({handleOpen}) {
                 {/* Display user details and logout option */}
                 {/* userDetails?.user?.first_name */}
                 <MenuItem>
-                  <Typography textAlign="center">{userDetails?.user?.first_name}</Typography>
+                  <Typography textAlign="center">{userDetails?.user?.first_name} - {userDetails?.user?.role}</Typography>
                 </MenuItem>
 
                 <MenuItem>
