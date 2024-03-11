@@ -56,8 +56,8 @@ const PayPalButton = ({ totalAmount }) => {
             },
             body: JSON.stringify({
               paymentInfo: details,
-              product_id: 1,
-              extra_services: [1],
+              product_id: 9,
+              // extra_services: [1],
               payment_period: "month"
               
             }),

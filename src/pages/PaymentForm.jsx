@@ -34,11 +34,11 @@ const PaymentForm = () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/stripe/pay/`, {
         payment_method_id: paymentMethodId,
-        product_id: 1,
-        extra_services: [1, 2],
+        product_id: 9,
+        extra_services: [4],
 
         // could be hour or week too
-        payment_period: "month" 
+        payment_period: "hour" 
       }, jwt_config);
       const paymentIntentResponse = response.data;
       console.log(paymentIntentResponse);
