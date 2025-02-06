@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Outlet } from "react-router-dom";
-
+import { AuthProvider } from "./hooks/authContext";
 import { UserAuth } from './hooks/useAuth';
 
 import Login from './components/Login'
@@ -30,6 +30,7 @@ const App = () => {
 
 
   return (
+    <AuthProvider>
     <UserAuth>
       
       {/* ToastContainer for displaying notifications */}
@@ -65,6 +66,7 @@ const App = () => {
         </Box>
         </Modal>
     </UserAuth>
+    </AuthProvider>
     
      
   );

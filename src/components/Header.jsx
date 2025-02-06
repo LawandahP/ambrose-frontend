@@ -45,7 +45,7 @@ function Header({handleOpen}) {
     setAnchorElUser(null);
   };
 
-  const full_name = userDetails?.user?.first_name + userDetails?.user?.last_name
+  const full_name = userDetails?.first_name + userDetails?.last_name
   // Render the header
   return (
     <AppBar position="sticky">
@@ -117,7 +117,7 @@ function Header({handleOpen}) {
         
           {/* Navigation menu for larger screens */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {userDetails?.name &&
+            {userDetails?.first_name &&
               pages.map((page) => (
                 <Button
                   key={page?.name}
@@ -131,12 +131,12 @@ function Header({handleOpen}) {
           </Box>
           
           {/* User menu */}
-          {userDetails?.name || userDetails?.user?.first_name ?
+          {userDetails?.first_name || userDetails?.first_name ?
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar 
-                    alt={userDetails?.name || full_name } 
+                    alt={userDetails?.first_name || full_name } 
                     src={userDetails?.avatar_url} 
                   />
                 </IconButton>
@@ -158,13 +158,13 @@ function Header({handleOpen}) {
                 onClose={handleCloseUserMenu}
               >
                 {/* Display user details and logout option */}
-                {/* userDetails?.user?.first_name */}
+                {/* userDetails?.first_name */}
                 <MenuItem>
-                  <Typography textAlign="center">{userDetails?.user?.first_name} - {userDetails?.user?.role}</Typography>
+                  <Typography textAlign="center">{userDetails?.first_name} - {userDetails?.role}</Typography>
                 </MenuItem>
 
                 <MenuItem>
-                  <Typography textAlign="center">{`Authenticated with ${userDetails?.user?.auth_provider}`}</Typography>
+                  <Typography textAlign="center">{`Authenticated with ${userDetails?.auth_provider}`}</Typography>
                 </MenuItem>
                 
                 {/* <MenuItem>

@@ -24,31 +24,10 @@ const PayPalButton = ({ totalAmount }) => {
       onApprove: (data, actions) => {
         return actions.order.capture().then(details => {
           console.log('Payment Successful:', details);
-          console.log('Payment Dat:', data);
+          console.log('Payment Data:', data);
             
-        //   try {
-        //     const response = axios.post(`${import.meta.env.VITE_BACKEND_URL}/process-paypal-payment/`, 
-        //     {
-        //         paymentInfo: details,
-        //         product_id: 1,
-        //         extra_services: [1, 2],
-        //         payment_period: "month"
-        //     }, jwt_config);
-
-        //     const res = response;
-        //     console.log("Payment Success", res);
-        //     toast.success(res.message)
-            
-        //     // Handle the response
-        //     // For example, showing the user a success message or handling errors
-        //   } catch (e) {
-        //     toast.error(e?.response ? e?.response?.data?.detail : e?.message)
-        //     toast.error(e?.response?.data)
-        //     console.error('Error:', e.response ? e.response.data : e.message);
-        //     // Handle the error
-        //   }
           // Send payment details to backend
-          fetch(`${import.meta.env.VITE_BACKEND_URL}/process-paypal-payment/`, {
+          fetch(`${import.meta.env.VITE_BACKEND_URL}/paypal/pay/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -56,10 +35,12 @@ const PayPalButton = ({ totalAmount }) => {
             },
             body: JSON.stringify({
               paymentInfo: details,
-              product_id: 9,
-              // extra_services: [1],
-              payment_period: "month"
-              
+              booking: {
+                "product": 4,
+                "start_date": "2024-05-10",
+                "end_date": "2024-05-12",
+                "extra_services": [1]
+              }
             }),
           })
           .then(response => response.json())
@@ -73,10 +54,9 @@ const PayPalButton = ({ totalAmount }) => {
             }
           })
           .catch((e) => {
-            console.error('Payment processing error:', e);
+            console.log('Payment processing error:', e);
             const msg = 'There was an issue processing your payment. Please try again.'
             toast.error(e.response ? e.response.data.detail : msg)
-            alert('');
           });
         });
       },

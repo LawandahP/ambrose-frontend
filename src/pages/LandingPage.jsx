@@ -13,6 +13,9 @@ import { UserContext } from '../hooks/useAuth';
 import { FcGoogle } from 'react-icons/fc';
 import AgreementButton from '../components/check';
 
+import { useAuthentication } from '../hooks/authContext';
+import { useGoogleLogin } from "@react-oauth/google";
+import WhatsAppSignup from './ConnectToWhatsApp';
 
 function Copyright() {
   return (
@@ -53,7 +56,16 @@ export default function LandingPage() {
   //     console.error('LinkedIn login error:', error);
   //   }
   // };
+  const { login, authenticating, googleLogin } = useAuthentication();
   
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      if (tokenResponse) {
+        await googleLogin(tokenResponse); // Call googleLogin with the credential
+      }
+    },
+    onError: (error) => console.error("Google login failed", error),
+  });
 
   return (
       <>
@@ -98,12 +110,15 @@ export default function LandingPage() {
                           onClick={() => handleLogin(githubConfig)
                         }/>  */}
 
-                        <LoginButton 
+                        {/* <LoginButton 
                           disabled={!agreementStatus}
                           text={'Login with Google'}
                           icon={<FcGoogle size={24} />}
                           onClick={() => handleLogin(googleConfig)}
-                        /> 
+                        />  */}
+                        <button onClick={() => handleGoogleLogin()} className="w-full mb-4" color="gray">
+                          <FcGoogle size={24} /> Sign In with Google
+                        </button>
 
                         <LoginButton 
                           disabled={!agreementStatus}
@@ -128,8 +143,10 @@ export default function LandingPage() {
 
                       </div>
                       <AgreementButton />
+                      
                   </div>
                   }
+                  <WhatsAppSignup />
                 </Stack>
               </Container>
             </Box>

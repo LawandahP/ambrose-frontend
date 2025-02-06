@@ -24,6 +24,13 @@ export const jwt_config = {
   },
 }
 
+export const multipart_jwt_config = {
+  headers: {
+    'Content-type': 'multipart/form-data',
+    Authorization: `Bearer ${accessToken}`,
+  },
+}
+
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -34,11 +41,12 @@ const PaymentForm = () => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/stripe/pay/`, {
         payment_method_id: paymentMethodId,
-        product_id: 9,
-        extra_services: [4],
-
-        // could be hour or week too
-        payment_period: "hour" 
+        booking: {
+          "product": 4,
+          "start_date": "2024-06-13",
+          "end_date": "2024-06-14",
+          "extra_services": [1]
+        }
       }, jwt_config);
       const paymentIntentResponse = response.data;
       console.log(paymentIntentResponse);
@@ -140,7 +148,7 @@ const PaymentForm = () => {
     };
     // Cleanup function to remove the onload event listener when the component unmounts
     return () => window.onload = null;
-  }, []);
+  }, [searchParams]);
 
 
   
